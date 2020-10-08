@@ -1,0 +1,63 @@
+<div class="form-container">
+  <section class="contact">
+    <h1 class="contact-header">CONTACT</h1>
+    <p class="contact-paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis at velit maximus, molestie est a, tempor magna.</p>
+  </section>
+  <form class="sending-form" [formGroup]="form" (ngSubmit)="submit()">
+    <div class="input-container">
+    <div class="input-wrapper">
+      <input  class="input" type="text" placeholder="Name" formControlName="name">
+      <div *ngIf="form.get('name').invalid && form.get('name').touched" class="validation">
+        <small *ngIf="form.get('name').errors.required">Поле name не может быть пустым</small>
+        <small *ngIf="form.get('name').errors.minlength">
+          Поле name не может содержать менее {{form.get('name').errors.minlength.requiredLength}} символов
+        </small>
+      </div>
+    </div>
+    <div class="input-wrapper">
+      <input class="input" type="email" placeholder="Email" formControlName="email">
+      <div *ngIf="form.get('email').invalid && form.get('email').touched" class="validation">
+        <small *ngIf="form.get('email').errors.required">Поле email не может быть пустым.</small>
+        <small *ngIf="form.get('email').errors.email">Введите корректный email.</small>
+      </div>
+    </div>
+    <div class="input-wrapper">
+      <input class="input" type="tel" placeholder="Phone" formControlName="phone">
+      <div *ngIf="form.get('phone').invalid && form.get('phone').touched" class="validation">
+        <small>Поле phone должно - "
+        <small *ngIf="form.get('phone').errors.required">Быть заполненным.</small>
+        <small *ngIf="form.get('phone').errors.pattern">Состоять из цифр.</small>
+        <small *ngIf="form.get('phone').errors.minlength">
+          Содержать {{form.get('phone').errors.minlength.requiredLength}} символов,
+          сейчас {{form.get('phone').errors.minlength.actualLength}}.
+        </small>
+        <small *ngIf="form.get('phone').errors.maxlength">
+          Содержать {{form.get('phone').errors.maxlength.requiredLength}} символов,
+          сейчас {{form.get('phone').errors.maxlength.actualLength}}.
+         </small>
+        "</small>
+      </div>
+    </div>
+    </div>
+    <div class="input-wrapper">
+    <textarea class="input input-textarea" rows="5" cols="5" placeholder="Message" formControlName="message"></textarea>
+      <div *ngIf="form.get('message').invalid && form.get('message').touched" class="validation">
+        <small *ngIf="form.get('message').errors.required">Поле message не может быть пустым</small>
+        <small *ngIf="form.get('message').errors.minlength">
+          Поле message должно содержать {{form.get('message').errors.minlength.requiredLength}},
+          сейчас {{form.get('message').errors.minlength.actualLength}}.
+        </small>
+      </div>
+    </div>
+    <div class="link-container">
+      <ul class="list-contacts">
+        <li><a href="#">5th London Boulevard, U.K.</a></li>
+        <li><a href="tel:+40 729 131 637">+40 729 131 637</a>/<a href="tel:+40 726 458 782">+40 726 458 782</a></li>
+        <li><a href="mailto:office@mindblister.com">office@mindblister.com</a></li>
+      </ul>
+      <button class="button-submit" type="submit" [disabled]="form.invalid">SEND MESSAGE</button>
+    </div>
+  </form>
+</div>
+
+
